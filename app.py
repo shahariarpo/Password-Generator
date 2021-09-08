@@ -11,10 +11,11 @@ except ValueError:
     exit()
 print("\nHere are/is your password(s):")
 
-for pwd in range(num_of_pass):
-    passwords = ""
-    for c in range(length_of_pass):
-        passwords += random.choice(chars)
-    print(passwords)
-print("Be sure to save the passwords")
 
+def generator():
+    for pwd in range(num_of_pass):
+        passwords = ""
+        for c in range(length_of_pass):
+            passwords += random.choice(chars)
+        print(passwords)
+    print("Be sure to save the passwords")
