@@ -19,3 +19,6 @@ def generator():
             passwords += random.choice(chars)
         print(passwords)
     print("Be sure to save the passwords")
+
+
+generator()

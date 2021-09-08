@@ -2,14 +2,18 @@ master_pass = input("Master Password: ")
 
 
 def view():
-    pass
+    with open("passwords.txt", 'r') as f:
+        for line in f.readlines():
+            data = line.rstrip()
+            user, pwd = data.split("|")
+            print(f"User: {user} | Password: {pwd}")
 
 
 def add():
     name = input("Account name: ")
     password = input("Password: ")
     with open("passwords.txt", 'a') as f:
-        f.write(name + " | " + password + "\n")
+        f.write(name + "|" + password + "\n")
 
 
 while True:
