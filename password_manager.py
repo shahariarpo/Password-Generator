@@ -1,4 +1,22 @@
-master_pass = input("Master Password: ")
+from cryptography.fernet import Fernet
+
+print("Hello and Welcome to this password manager")
+'''
+def write_key():
+    key = Fernet.generate_key()
+    with open("key.key", "wb") as key_file:
+        key_file.write(key)'''
+
+
+def load_key():
+    file = open("key.key", "rb")
+    key = file.read()
+    file.close()
+    return key
+
+
+key = load_key()
+fer = Fernet(key)
 
 
 def view():
@@ -6,14 +24,14 @@ def view():
         for line in f.readlines():
             data = line.rstrip()
             user, pwd = data.split("|")
-            print(f"User: {user} | Password: {pwd}")
+            print(f"User: {user} | Password: {fer.decrypt(pwd.encode()).decode()}")
 
 
 def add():
     name = input("Account name: ")
     password = input("Password: ")
     with open("passwords.txt", 'a') as f:
-        f.write(name + "|" + password + "\n")
+        f.write(name + "|" + str(fer.encrypt(password.encode()).decode()) + "\n")
 
 
 while True:
